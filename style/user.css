@@ -198,7 +198,6 @@ a {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
-    cursor: pointer;
     animation: fadeIn 0.4s ease;
 }
 
@@ -246,6 +245,31 @@ a {
     content: '₹';
     font-size: 18px;
     margin-right: 2px;
+}
+
+.btn-add-to-cart {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--primary-green);
+    color: white;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-add-to-cart:hover {
+    background: var(--primary-green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-add-to-cart:active {
+    transform: translateY(0);
 }
 
 .empty-state {

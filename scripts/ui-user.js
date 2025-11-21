@@ -52,10 +52,46 @@ function createProductCard(product) {
         <div class="product-info">
             <h3>${escapeHtml(product.name)}</h3>
             <p class="price">${parseFloat(product.price).toFixed(2)}</p>
+            <button class="btn btn-add-to-cart" data-product-id="${product.id}" 
+                    data-product-name="${escapeHtml(product.name)}"
+                    data-product-price="${product.price}"
+                    data-product-image="${escapeHtml(product.image)}">
+                Add to Cart
+            </button>
         </div>
     `;
 
+    // Add event listener for Add to Cart button
+    const addToCartBtn = card.querySelector('.btn-add-to-cart');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+            handleAddToCart(product);
+        });
+    }
+
     return card;
+}
+
+/**
+ * Handle adding product to cart
+ * @param {Product} product - Product object
+ */
+function handleAddToCart(product) {
+    if (!product) {
+        showNotification('Product not found', 'error');
+        return;
+    }
+
+    const cartItem = addToCart(product.id, product.name, product.price, product.image);
+    
+    if (cartItem) {
+        const message = cartItem.qty > 1 
+            ? `${product.name} added to cart! (${cartItem.qty} items)`
+            : `${product.name} added to cart!`;
+        showNotification(message, 'success');
+    } else {
+        showNotification('Failed to add item to cart', 'error');
+    }
 }
 
 /**
